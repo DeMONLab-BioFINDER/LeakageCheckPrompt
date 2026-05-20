@@ -1,10 +1,10 @@
-# Leakage check for machine learning pipelines in biomedical studies
+# Plumber: Leakage check for machine learning pipelines in biomedical studies
 
 Generate LLM prompts to review method sections for potential data leakage issues in biomedical machine learning studies.
 
 ## Reference
 
-- [Prevalent data leakage inflates proteomics-based prediction performance](https://www.demonlab.org)
+- [Performance of protein panels is inflated across many biomarker studies](https://www.demonlab.org)
 
 ## What this repository does
 
