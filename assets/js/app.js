@@ -3,6 +3,9 @@ const state = {
   instructions: [],
 };
 
+const APP_NAME = "Plumber";
+const DEFAULT_PAGE_TITLE = "Plumber: Checking data leakage using LLM";
+
 const dom = {
   pageTitleInput: document.getElementById("page-title-input"),
   methodInput: document.getElementById("method-input"),
@@ -163,7 +166,7 @@ function getSelectedInstructions() {
 }
 
 function buildPrompt(pageTitle, methodText, selectedInstructions) {
-  const titleBlock = pageTitle.trim() || "LeakageCheck Prompt Builder";
+  const titleBlock = pageTitle.trim() || DEFAULT_PAGE_TITLE;
   const methodBlock =
     methodText.trim() || "[Paste the method section here before using this prompt.]";
   const roleBlock = state.role
@@ -216,12 +219,14 @@ function updatePrompt() {
   const pageTitle = dom.pageTitleInput.value;
   const methodText = dom.methodInput.value;
   const selectedInstructions = getSelectedInstructions();
+  const trimmedTitle = pageTitle.trim();
   syncTitleFieldHeight();
   dom.methodStats.textContent = `${methodText.length.toLocaleString()} characters`;
   dom.promptOutput.value = buildPrompt(pageTitle, methodText, selectedInstructions);
-  document.title = pageTitle.trim()
-    ? `${pageTitle.trim()} | LeakageCheck`
-    : "LeakageCheck Prompt Builder";
+  document.title =
+    trimmedTitle && trimmedTitle !== DEFAULT_PAGE_TITLE
+      ? `${trimmedTitle} | ${APP_NAME}`
+      : DEFAULT_PAGE_TITLE;
 
   const selectedNames = selectedInstructions.map((instruction) => instruction.title);
   dom.instructionStatus.textContent =
